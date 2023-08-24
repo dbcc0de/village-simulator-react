@@ -1,16 +1,16 @@
 import "./Map.css";
-import Cell from "../models/Cell";
 import Tile from "./Tile";
+import Cell from "../models/Cell";
 
 interface Props {
-  tiles: Cell[];
+  cells: Cell[];
 }
 
-const Map = ({ tiles }: Props) => {
+const Map = ({ cells }: Props) => {
   return (
     <div className="Map">
-      {tiles.map((item, index) => (
-        <Tile cell={item} key={item.name + index} />
+      {cells.map((item, index) => (
+        <Tile cell={item} key={index} />
       ))}
     </div>
   );

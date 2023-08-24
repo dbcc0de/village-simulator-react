@@ -1,3 +1,10 @@
-.Tile div {
+.Tile {
   border: 2px solid black;
+  width: 23vmin;
+  height: 15vmin;
 }
+
+/* .Tile .EditImprovementDialog,
+.Tile .AddImprovementDialog {
+  display: none;
+} */

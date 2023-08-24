@@ -12,14 +12,167 @@ function App() {
     { icon: "", type: "People", amount: 5 },
   ]);
 
-  const [tiles, setTiles] = useState([{ name: "cell" }, { name: "cell2" }]);
+  // 24 cells with specific info
+  const [cells, setCells] = useState([
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+    {
+      type: null,
+      icon: null,
+      level: 0,
+      isEmpty: true,
+    },
+  ]);
 
+  // const onAddImprovement = (improvement: any): void => {
+  //   setCells((cells))
+  // }
+
+  // cells.icon += "image path"
+
+  // callback props live here
   return (
     <div className="App">
       {/* ResourcesView */}
       <ResourcesView resources={resources} />
       {/* Map */}
-      <Map tiles={tiles} />
+      <Map cells={cells} />
     </div>
   );
 }
