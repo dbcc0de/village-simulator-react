@@ -10,7 +10,6 @@ interface Props {
 const Tile = ({ cell }: Props) => {
   return (
     <div className="Tile">
-      <p>{cell.name}</p>
       <EditImprovementDialog />
       <AddImprovementDialog />
     </div>
