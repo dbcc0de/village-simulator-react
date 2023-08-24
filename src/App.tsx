@@ -12,12 +12,14 @@ function App() {
     { icon: "", type: "People", amount: 5 },
   ]);
 
+  const [tiles, setTiles] = useState([{ name: "cell" }, { name: "cell2" }]);
+
   return (
     <div className="App">
       {/* ResourcesView */}
       <ResourcesView resources={resources} />
       {/* Map */}
-      <Map />
+      <Map tiles={tiles} />
     </div>
   );
 }

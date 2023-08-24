@@ -1,10 +1,16 @@
+import Cell from "../models/Cell";
 import AddImprovementDialog from "./AddImprovementDialog";
 import EditImprovementDialog from "./EditImprovementDialog";
 import "./Tile.css";
 
-const Tile = () => {
+interface Props {
+  cell: Cell;
+}
+
+const Tile = ({ cell }: Props) => {
   return (
     <div className="Tile">
+      <p>{cell.name}</p>
       <EditImprovementDialog />
       <AddImprovementDialog />
     </div>
