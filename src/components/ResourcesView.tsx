@@ -10,6 +10,7 @@ interface Props {
 const ResourcesView = ({ resources }: Props) => {
   //   function that updates a resource's amount
   // onEditAmount = (resource: Resource)
+
   return (
     <div className="ResourcesView">
       {resources.map((item, index) => (

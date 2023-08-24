@@ -7,8 +7,10 @@ interface Props {
 
 const ResourceLine = ({ resource }: Props) => {
   // will include various resources, their icon, type, and amount
+
   return (
     <div className="ResourceLine">
+      <img src={resource.icon} alt={resource.type} />
       <p>{resource.type}</p>
       <p>{resource.amount}</p>
     </div>
