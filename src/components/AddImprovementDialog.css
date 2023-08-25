@@ -1,0 +1,6 @@
+.AddImprovementDialog {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  z-index: 1;
+}

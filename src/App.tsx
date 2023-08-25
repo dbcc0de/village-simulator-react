@@ -5,6 +5,7 @@ import { useState } from "react";
 import Cell from "./models/Cell";
 
 function App() {
+  // is there a house?
   const [resources, setResources] = useState([
     { icon: "", type: "Wood", amount: 12 },
     { icon: "", type: "Sheep", amount: 3 },
@@ -167,6 +168,16 @@ function App() {
       cell,
       ...prev.slice(index + 1),
     ]);
+    // also needs to edit the resource #s
+  };
+
+  const onEditImprove = (index: number, cell: Cell) => {
+    setCells((prev) => [
+      ...prev.slice(0, index),
+      cell,
+      ...prev.slice(index + 1),
+    ]);
+    // also needs to edit the resource #s
   };
 
   console.log(cells);
@@ -182,7 +193,12 @@ function App() {
       {/* ResourcesView */}
       <ResourcesView resources={resources} />
       {/* Map */}
-      <Map cells={cells} resources={resources} onAdd={onAddImprove} />
+      <Map
+        cells={cells}
+        resources={resources}
+        onAdd={onAddImprove}
+        onEdit={onEditImprove}
+      />
     </div>
   );
 }
