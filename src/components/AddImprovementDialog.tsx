@@ -10,7 +10,7 @@ interface Props {
 }
 
 const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
-  const [type, setType] = useState("people");
+  const [type, setType] = useState("house");
   const [icon, setIcon] = useState("");
   // will have to convert string to number
   const [level, setLevel] = useState(0);
@@ -19,10 +19,9 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log({ type });
     onAdd({ type, icon: "", level: 1, isEmpty: false });
-    // {type, icon=type img path, Number(level), isEmpty}
-    setType("people");
+    // need onAdd to edit resource #s
+    setType("house");
     setIcon("");
     setLevel(0);
     setIsEmpty(true);
@@ -42,7 +41,7 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value={"people"}>People</option>
+          <option value={"house"}>House</option>
           <option value={"brick"}>Brick</option>
           <option value={"wood"}>Wood</option>
           <option value={"sheep"}>Sheep</option>
