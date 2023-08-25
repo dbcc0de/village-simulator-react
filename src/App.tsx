@@ -2,6 +2,7 @@ import "./App.css";
 import ResourcesView from "./components/ResourcesView";
 import Map from "./components/Map";
 import { useState } from "react";
+import Cell from "./models/Cell";
 
 function App() {
   const [resources, setResources] = useState([
@@ -13,7 +14,7 @@ function App() {
   ]);
 
   // 24 cells with specific info
-  const [cells, setCells] = useState([
+  const [cells, setCells] = useState<Cell[]>([
     {
       type: null,
       icon: null,
@@ -160,6 +161,15 @@ function App() {
     },
   ]);
 
+  const onAddImprove = (index: number, cell: Cell) => {
+    setCells((prev) => [
+      ...prev.slice(0, index),
+      cell,
+      ...prev.slice(index + 1),
+    ]);
+  };
+
+  console.log(cells);
   // const onAddImprovement = (improvement: any): void => {
   //   setCells((cells))
   // }
@@ -172,7 +182,7 @@ function App() {
       {/* ResourcesView */}
       <ResourcesView resources={resources} />
       {/* Map */}
-      <Map cells={cells} />
+      <Map cells={cells} resources={resources} onAdd={onAddImprove} />
     </div>
   );
 }
