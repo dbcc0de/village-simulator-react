@@ -38,3 +38,9 @@ test("renders learn react link", () => {
 // if type === this, benefit = this, cost = cost
 // scale for level have a multiplier effect
 // extended challenges
+
+// add style to a tile that is clicked so that they know they are adding/editing on the specific tile
+// come up w/ formula for benefit/cost
+// add icon once zits added
+// exit out of button when done on cancel and add
+// ? header

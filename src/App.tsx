@@ -3,15 +3,20 @@ import ResourcesView from "./components/ResourcesView";
 import Map from "./components/Map";
 import { useState } from "react";
 import Cell from "./models/Cell";
+import treeSolid from "./Assets/tree-solid.svg";
+import cowSolid from "./Assets/cow-solid.svg";
+import brickSolid from "./Assets/trowel-bricks-solid.svg";
+import wheatSolid from "./Assets/wheat-awn-solid.svg";
+import personSolid from "./Assets/person-solid.svg";
 
 function App() {
   // is there a house?
   const [resources, setResources] = useState([
-    { icon: "", type: "Wood", amount: 12 },
-    { icon: "", type: "Sheep", amount: 3 },
-    { icon: "", type: "Brick", amount: 6 },
-    { icon: "", type: "Wheat", amount: 10 },
-    { icon: "", type: "People", amount: 5 },
+    { icon: treeSolid, type: "Wood", amount: 12 },
+    { icon: cowSolid, type: "Cow", amount: 3 },
+    { icon: brickSolid, type: "Brick", amount: 6 },
+    { icon: wheatSolid, type: "Wheat", amount: 10 },
+    { icon: personSolid, type: "People", amount: 5 },
   ]);
 
   // 24 cells with specific info
