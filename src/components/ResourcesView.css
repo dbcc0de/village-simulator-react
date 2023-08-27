@@ -1,0 +1,15 @@
+.ResourcesView {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media only screen and (min-width: 768px) {
+  .ResourcesView {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 4vw;
+    bottom: 35vh;
+    border: 2px solid black;
+  }
+}
