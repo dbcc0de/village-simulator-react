@@ -3,20 +3,40 @@ import ResourcesView from "./components/ResourcesView";
 import Map from "./components/Map";
 import { useState } from "react";
 import Cell from "./models/Cell";
-import treeSolid from "./Assets/tree-solid.svg";
-import cowSolid from "./Assets/cow-solid.svg";
-import brickSolid from "./Assets/trowel-bricks-solid.svg";
-import wheatSolid from "./Assets/wheat-awn-solid.svg";
-import personSolid from "./Assets/person-solid.svg";
+// import treeSolid from "./assets/tree-solid.svg";
+// import cowSolid from "./assets/cow-solid.svg";
+// import brickSolid from "./assets/trowel-bricks-solid.svg";
+// import wheatSolid from "./assets/wheat-awn-solid.svg";
+// import personSolid from "./assets/person-solid.svg";
 
 function App() {
   // is there a house?
   const [resources, setResources] = useState([
-    { icon: treeSolid, type: "Wood", amount: 12 },
-    { icon: cowSolid, type: "Cow", amount: 3 },
-    { icon: brickSolid, type: "Brick", amount: 6 },
-    { icon: wheatSolid, type: "Wheat", amount: 10 },
-    { icon: personSolid, type: "People", amount: 5 },
+    {
+      icon: "http://localhost:3000/assets/tree-solid.svg",
+      type: "Wood",
+      amount: 12,
+    },
+    {
+      icon: "http://localhost:3000/assets/cow-solid.svg",
+      type: "Cow",
+      amount: 3,
+    },
+    {
+      icon: "http://localhost:3000/assets/trowel-bricks-solid.svg",
+      type: "Brick",
+      amount: 6,
+    },
+    {
+      icon: "http://localhost:3000/assets/wheat-awn-solid.svg",
+      type: "Wheat",
+      amount: 10,
+    },
+    {
+      icon: "http://localhost:3000/assets/house-solid.svg",
+      type: "People",
+      amount: 5,
+    },
   ]);
 
   // 24 cells with specific info
