@@ -30,6 +30,7 @@ const Tile = ({ cell, resources, index, onAdd, onEdit }: Props) => {
       className="Tile"
       data-index={index}
     >
+      {!cell.isEmpty && <img src={cell.icon || ""} alt="" />}
       {showDialogs && (
         <div>
           {!choice ? (
