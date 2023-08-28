@@ -3,3 +3,12 @@
   width: 23vmin;
   height: 15vmin;
 }
+
+.Tile .form-container {
+  position: absolute;
+  top: 40vh;
+  left: 45vw;
+  z-index: 2;
+  border: 2px solid black;
+  background-color: white;
+}

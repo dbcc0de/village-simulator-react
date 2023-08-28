@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cell from "../models/Cell";
 import Resource from "../models/Resource";
 import AddImprovementDialog from "./AddImprovementDialog";
@@ -9,11 +9,10 @@ interface Props {
   cell: Cell;
   resources: Resource[];
   index: number;
-  onAdd: (cell: Cell) => void;
-  onEdit: (cell: Cell) => void;
+  onAdd: (index: number, cell: Cell) => void;
 }
 
-const Tile = ({ cell, resources, index, onAdd, onEdit }: Props) => {
+const Tile = ({ cell, resources, index, onAdd }: Props) => {
   // when a tile is clicked render a improvement dialog
   // if empty render add / if !empty render edit
   // cell.isEmpty === true => render onAdd
@@ -21,31 +20,42 @@ const Tile = ({ cell, resources, index, onAdd, onEdit }: Props) => {
   // if e.target[data-index]
 
   const [showDialogs, setShowDialogs] = useState(false);
-  const [choice, setChoice] = useState<boolean>(cell.isEmpty);
-  // cancel button needs access to setShowDialogs
+
+  const handleClick = (e: any) => {
+    setShowDialogs(true);
+    if (
+      e.target.classList.contains("cancel") ||
+      e.target.classList.contains("exitOnClick")
+    ) {
+      setShowDialogs(false);
+    }
+  };
 
   return (
-    <div
-      onClick={() => setShowDialogs(true)}
-      className="Tile"
-      data-index={index}
-    >
+    <div onClick={handleClick} className="Tile" data-index={index}>
       {!cell.isEmpty && <img src={cell.icon || ""} alt="" />}
       {showDialogs && (
-        <div>
-          {!choice ? (
+        <div className="form-container">
+          {cell.icon ? (
             <EditImprovementDialog
               cell={cell}
+              index={index}
               resources={resources}
-              onEdit={onEdit}
+              onAdd={onAdd}
+              setShowDialogs={setShowDialogs}
             />
           ) : (
             <AddImprovementDialog
+              index={index}
               cell={cell}
               resources={resources}
               onAdd={onAdd}
+              setShowDialogs={setShowDialogs}
             />
           )}
+          <button className="cancel" onClick={handleClick}>
+            Cancel
+          </button>
         </div>
       )}
     </div>

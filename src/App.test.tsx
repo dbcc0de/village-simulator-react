@@ -44,3 +44,8 @@ test("renders learn react link", () => {
 // add icon once zits added
 // exit out of button when done on cancel and add
 // ? header
+
+// level counter in tile in addition to icon when upgraded
+// need to make downgrade and remove buttons
+// final styling
+// presentation prep

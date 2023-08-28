@@ -2,19 +2,23 @@ import { FormEvent, useState } from "react";
 import "./AddImprovementDialog.css";
 import Resource from "../models/Resource";
 import Cell from "../models/Cell";
-import treeSolid from "./Assets/tree-solid.svg";
-import cowSolid from "./Assets/cow-solid.svg";
-import brickSolid from "./Assets/trowel-bricks-solid.svg";
-import wheatSolid from "./Assets/wheat-awn-solid.svg";
-import houseSolid from "./src/Assets/house-solid.svg";
 
 interface Props {
   cell: Cell;
   resources: Resource[];
-  onAdd: (cell: Cell) => void;
+  onAdd: (index: number, cell: Cell) => void;
+  setShowDialogs: (boolean: boolean) => void;
+  index: number;
 }
 
-const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
+const AddImprovementDialog = ({
+  cell,
+  index,
+  resources,
+  onAdd,
+  setShowDialogs,
+}: // handleClicks,
+Props) => {
   const [type, setType] = useState("house");
   const [icon, setIcon] = useState("");
   // will have to convert string to number
@@ -25,35 +29,35 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (type === "house") {
-      onAdd({
+      onAdd(index, {
         type: "house",
         icon: "http://localhost:3000/assets/house-solid.svg",
         level: 1,
         isEmpty: false,
       });
     } else if (type === "cow") {
-      onAdd({
+      onAdd(index, {
         type: "cow",
         icon: "http://localhost:3000/assets/cow-solid.svg",
         level: 1,
         isEmpty: false,
       });
     } else if (type === "wheat") {
-      onAdd({
+      onAdd(index, {
         type: "wheat",
         icon: "http://localhost:3000/assets/wheat-awn-solid.svg",
         level: 1,
         isEmpty: false,
       });
     } else if (type === "wood") {
-      onAdd({
+      onAdd(index, {
         type: "wood",
         icon: "http://localhost:3000/assets/tree-solid.svg",
         level: 1,
         isEmpty: false,
       });
     } else if (type === "brick") {
-      onAdd({
+      onAdd(index, {
         type: "brick",
         icon: "http://localhost:3000/assets/trowel-bricks-solid.svg",
         level: 1,
@@ -62,6 +66,7 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
     }
     // onAdd({ type, icon: "", level: 1, isEmpty: false });
     // need onAdd to edit resource #s
+    setShowDialogs(false);
     setType("house");
     setIcon("");
     setLevel(0);
@@ -83,8 +88,7 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
   } else if (type === "wood") {
     cost = "2 wheat, 1 cow, 1 people";
     benefit = "4 wood";
-  }
-  if (type === "brick") {
+  } else if (type === "brick") {
     cost = "2 wheat, 1 cow, 2 people";
     benefit = "4";
   }
@@ -108,8 +112,9 @@ const AddImprovementDialog = ({ cell, resources, onAdd }: Props) => {
       </label>
       <p>Benefit: {benefit}</p>
       <p>Cost: {cost}</p>
-      <button>Cancel</button>
-      <button type="submit">Add</button>
+      <button className="add" type="submit">
+        Add
+      </button>
     </form>
   );
 };
