@@ -1,8 +1,21 @@
-body {
+body,
+h1,
+div,
+p {
   margin: 0;
+  font-family: "Cardo", serif;
 }
 
 img {
   width: 20px;
   height: 20px;
+}
+
+.backgroundImage {
+  background-image: url("../public/assets/villageLandscape.png");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -3;
 }

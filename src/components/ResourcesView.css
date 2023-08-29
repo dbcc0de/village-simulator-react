@@ -1,15 +1,25 @@
 .ResourcesView {
   display: flex;
   justify-content: space-around;
+  background-color: aqua;
+  width: 80vw;
+  border-radius: 15px;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+  box-shadow: 3px 3px 3px black;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 644px) {
   .ResourcesView {
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 4vw;
-    bottom: 35vh;
+    right: 15vw;
+    bottom: 10vh;
     border: 2px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    width: initial;
   }
 }

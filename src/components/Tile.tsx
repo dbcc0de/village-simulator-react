@@ -33,7 +33,12 @@ const Tile = ({ cell, resources, index, onAdd }: Props) => {
 
   return (
     <div onClick={handleClick} className="Tile" data-index={index}>
-      {!cell.isEmpty && <img src={cell.icon || ""} alt="" />}
+      {!cell.isEmpty && (
+        <>
+          <img src={cell.icon || ""} alt="" />
+          <p>LVL {cell.level}</p>
+        </>
+      )}
       {showDialogs && (
         <div className="form-container">
           {cell.icon ? (

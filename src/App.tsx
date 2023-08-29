@@ -4,18 +4,14 @@ import Map from "./components/Map";
 import { useState } from "react";
 import Cell from "./models/Cell";
 import Resource from "./models/Resource";
-// import treeSolid from "./assets/tree-solid.svg";
-// import cowSolid from "./assets/cow-solid.svg";
-// import brickSolid from "./assets/trowel-bricks-solid.svg";
-// import wheatSolid from "./assets/wheat-awn-solid.svg";
-// import personSolid from "./assets/person-solid.svg";
+import Header from "./components/Header";
 
 function App() {
   const [resources, setResources] = useState([
     {
       icon: "http://localhost:3000/assets/tree-solid.svg",
       type: "Wood",
-      amount: 12,
+      amount: 8,
     },
     {
       icon: "http://localhost:3000/assets/cow-solid.svg",
@@ -30,12 +26,12 @@ function App() {
     {
       icon: "http://localhost:3000/assets/wheat-awn-solid.svg",
       type: "Wheat",
-      amount: 10,
+      amount: 7,
     },
     {
       icon: "http://localhost:3000/assets/house-solid.svg",
       type: "People",
-      amount: 5,
+      amount: 4,
     },
   ]);
 
@@ -187,58 +183,56 @@ function App() {
     },
   ]);
 
-  // also needs to edit the resource #s
-  // if house, add benefits, subtract cost
   // formula for decrementing, resources * cell.level
-  const onAddChangeResources = (type: string) => {
+  const onAddChangeResources = (type: string, cell: Cell) => {
     if (type === "house") {
       setResources((prev) => {
         const newResources = prev.slice(0); // Just makes a copy.
-        newResources[4].amount += 5;
-        newResources[2].amount -= 3;
-        newResources[0].amount -= 2;
+        newResources[4].amount += 5 * cell.level;
+        newResources[2].amount -= 3 * cell.level;
+        newResources[0].amount -= 2 * cell.level;
         return newResources;
       });
     } else if (type === "cow") {
       setResources((prev) => {
         const newResources = prev.slice(0);
-        newResources[1].amount += 3;
-        newResources[3].amount -= 3;
-        newResources[4].amount -= 1;
-        newResources[0].amount -= 1;
+        newResources[1].amount += 3 * cell.level;
+        newResources[3].amount -= 3 * cell.level;
+        newResources[4].amount -= 1 * cell.level;
+        newResources[0].amount -= 1 * cell.level;
         return newResources;
       });
     } else if (type === "wheat") {
       setResources((prev) => {
         const newResources = prev.slice(0);
-        newResources[3].amount += 6;
-        newResources[4].amount -= 1;
-        newResources[0].amount -= 1;
+        newResources[3].amount += 6 * cell.level;
+        newResources[4].amount -= 1 * cell.level;
+        newResources[0].amount -= 1 * cell.level;
         return newResources;
       });
     } else if (type === "wood") {
       setResources((prev) => {
         const newResources = prev.slice(0);
-        newResources[0].amount += 4;
-        newResources[3].amount -= 2;
-        newResources[4].amount -= 1;
-        newResources[1].amount -= 1;
+        newResources[0].amount += 4 * cell.level;
+        newResources[3].amount -= 2 * cell.level;
+        newResources[4].amount -= 1 * cell.level;
+        newResources[1].amount -= 1 * cell.level;
         return newResources;
       });
     } else if (type === "brick") {
       setResources((prev) => {
         const newResources = prev.slice(0);
-        newResources[2].amount += 4;
-        newResources[3].amount -= 2;
-        newResources[4].amount -= 2;
-        newResources[1].amount -= 1;
+        newResources[2].amount += 4 * cell.level;
+        newResources[3].amount -= 2 * cell.level;
+        newResources[4].amount -= 2 * cell.level;
+        newResources[1].amount -= 1 * cell.level;
         return newResources;
       });
     }
   };
 
   const onAddImprove = (index: number, cell: Cell) => {
-    onAddChangeResources(cell.type!);
+    onAddChangeResources(cell.type!, cell);
 
     setCells((prev) => [
       ...prev.slice(0, index),
@@ -247,24 +241,11 @@ function App() {
     ]);
   };
 
-  // const onEditResources = (resources: Resource) => {
-  //   setResources((prev) => [
-  //   ])
-  // }
-
-  console.log(cells);
-  // const onAddImprovement = (improvement: any): void => {
-  //   setCells((cells))
-  // }
-
-  // cells.icon += "image path"
-
-  // callback props live here
   return (
     <div className="App">
-      {/* ResourcesView */}
+      <div className="backgroundImage"></div>
+      <Header />
       <ResourcesView resources={resources} />
-      {/* Map */}
       <Map cells={cells} resources={resources} onAdd={onAddImprove} />
     </div>
   );

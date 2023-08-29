@@ -1,14 +1,41 @@
 .Tile {
   border: 2px solid black;
-  width: 23vmin;
-  height: 15vmin;
+  width: 18vmin;
+  min-width: 50px;
+  height: 10vmin;
+  min-height: 50px;
+  border-radius: 15px;
+  background-color: sandybrown;
+  box-shadow: 3px 3px 3px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Tile img {
+  width: 33px;
+  height: 31px;
 }
 
 .Tile .form-container {
   position: absolute;
-  top: 40vh;
-  left: 45vw;
-  z-index: 2;
+  left: 30vw;
+  top: 50vh;
   border: 2px solid black;
   background-color: white;
+  border-radius: 15px;
+  width: 40vw;
+  box-shadow: 5px 5px 5px black;
+}
+
+.Tile button {
+  width: auto;
+  background-color: aqua;
+  color: black;
+  border-radius: 8px;
+}
+
+.Tile .form-container p,
+.Tile .form-container label {
+  padding-left: 8px;
 }

@@ -1,7 +1,21 @@
 .Map {
-  border: 2px green solid;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 0px;
-  width: 50%;
+  grid-column-gap: 12px;
+  grid-row-gap: 10px;
+  margin-left: 10px;
+}
+
+/* .Map {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  column-gap: 12px;
+  row-gap: 10px;
+} */
+
+@media only screen and (min-width: 644px) {
+  .Map {
+    width: 50vw;
+  }
 }

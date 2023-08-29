@@ -28,7 +28,20 @@ Props) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (type === "house") {
+    if (
+      resources[0].amount <= 0 ||
+      resources[1].amount <= 0 ||
+      resources[2].amount <= 0 ||
+      resources[3].amount <= 0 ||
+      resources[4].amount <= 0
+    ) {
+      let anuncio: boolean | undefined = window.confirm(
+        "Lo siento...you lost the game :'("
+      );
+      if (anuncio === true) {
+        window.location.reload();
+      }
+    } else if (type === "house") {
       onAdd(index, {
         type: "house",
         icon: "http://localhost:3000/assets/house-solid.svg",
@@ -90,7 +103,7 @@ Props) => {
     benefit = "4 wood";
   } else if (type === "brick") {
     cost = "2 wheat, 1 cow, 2 people";
-    benefit = "4";
+    benefit = "4 brick";
   }
 
   return (
