@@ -9,6 +9,7 @@ interface Props {
   onAdd: (index: number, cell: Cell) => void;
   index: number;
   setShowDialogs: (boolean: boolean) => void;
+  onDowngrade: (index: number, cell: Cell) => void;
 }
 
 const EditImprovementDialog = ({
@@ -17,6 +18,7 @@ const EditImprovementDialog = ({
   index,
   onAdd,
   setShowDialogs,
+  onDowngrade,
 }: Props) => {
   const [type, setType] = useState(cell.type);
   const [icon, setIcon] = useState(cell.icon);
@@ -89,6 +91,112 @@ const EditImprovementDialog = ({
     setShowDialogs(false);
   };
 
+  const handleDowngrade = () => {
+    if (
+      resources[0].amount < 0 ||
+      resources[1].amount < 0 ||
+      resources[2].amount < 0 ||
+      resources[3].amount < 0 ||
+      resources[4].amount < 0
+    ) {
+      let anuncio: boolean | undefined = window.confirm(
+        "Lo siento...you lost the game :'("
+      );
+      if (anuncio === true) {
+        window.location.reload();
+      }
+    } else if (type === "house" && level > 1) {
+      onDowngrade(index, {
+        type: "house",
+        icon: "http://localhost:3000/assets/house-solid.svg",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "cow" && level > 1) {
+      onDowngrade(index, {
+        type: "cow",
+        icon: "http://localhost:3000/assets/cow-solid.svg",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "wheat" && level > 1) {
+      onDowngrade(index, {
+        type: "wheat",
+        icon: "http://localhost:3000/assets/wheat-awn-solid.svg",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "wood" && level > 1) {
+      onDowngrade(index, {
+        type: "wood",
+        icon: "http://localhost:3000/assets/tree-solid.svg",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "brick" && level > 1) {
+      onDowngrade(index, {
+        type: "brick",
+        icon: "http://localhost:3000/assets/trowel-bricks-solid.svg",
+        level: level - 1,
+        isEmpty: false,
+      });
+    }
+    setShowDialogs(false);
+  };
+
+  const handleRemove = () => {
+    if (
+      resources[0].amount < 0 ||
+      resources[1].amount < 0 ||
+      resources[2].amount < 0 ||
+      resources[3].amount < 0 ||
+      resources[4].amount < 0
+    ) {
+      let anuncio: boolean | undefined = window.confirm(
+        "Lo siento...you lost the game :'("
+      );
+      if (anuncio === true) {
+        window.location.reload();
+      }
+    } else if (type === "house") {
+      onDowngrade(index, {
+        type: "house",
+        icon: "",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "cow") {
+      onDowngrade(index, {
+        type: "cow",
+        icon: "",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "wheat") {
+      onDowngrade(index, {
+        type: "wheat",
+        icon: '"',
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "wood") {
+      onDowngrade(index, {
+        type: "wood",
+        icon: "",
+        level: level - 1,
+        isEmpty: false,
+      });
+    } else if (type === "brick") {
+      onDowngrade(index, {
+        type: "brick",
+        icon: "",
+        level: level - 1,
+        isEmpty: false,
+      });
+    }
+    setShowDialogs(false);
+  };
+
   let benefit = "";
   let cost = "";
   if (type === "house") {
@@ -103,7 +211,7 @@ const EditImprovementDialog = ({
     cost = `${(level + 1) * 1} wood, ${(level + 1) * 1} people`;
     benefit = `${(level + 1) * 6} wheat`;
   } else if (type === "wood") {
-    cost = `${level + 1 * 2} wheat, ${(level + 1) * 1} cow, ${
+    cost = `${(level + 1) * 2} wheat, ${(level + 1) * 1} cow, ${
       (level + 1) * 1
     } people`;
     benefit = `${(level + 1) * 4} wood`;
@@ -128,7 +236,7 @@ const EditImprovementDialog = ({
       <button className="exitOnClick" onClick={handleUpgrade}>
         Upgrade
       </button>
-      <button className="exitOnClick" onClick={() => {}}>
+      <button className="exitOnClick" onClick={handleDowngrade}>
         Downgrade
       </button>
       <button onClick={() => {}}>Remove</button>

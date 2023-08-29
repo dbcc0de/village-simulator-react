@@ -183,16 +183,72 @@ function App() {
     },
   ]);
 
+  const [showPopup, setShowPopup] = useState(false);
+
   // formula for decrementing, resources * cell.level
-  const onAddChangeResources = (type: string, cell: Cell) => {
+  const onDowngradeResources = (type: string, cell: Cell) => {
     if (type === "house") {
       setResources((prev) => {
         const newResources = prev.slice(0); // Just makes a copy.
-        newResources[4].amount += 5 * cell.level;
-        newResources[2].amount -= 3 * cell.level;
-        newResources[0].amount -= 2 * cell.level;
+        newResources[4].amount -= 5 * (cell.level + 1);
+        newResources[2].amount += 3 * (cell.level + 1);
+        newResources[0].amount += 2 * (cell.level + 1);
         return newResources;
       });
+    } else if (type === "cow") {
+      setResources((prev) => {
+        const newResources = prev.slice(0);
+        newResources[1].amount -= 3 * (cell.level + 1);
+        newResources[3].amount += 3 * (cell.level + 1);
+        newResources[4].amount += 1 * (cell.level + 1);
+        newResources[0].amount += 1 * (cell.level + 1);
+        return newResources;
+      });
+    } else if (type === "wheat") {
+      setResources((prev) => {
+        const newResources = prev.slice(0);
+        newResources[3].amount -= 6 * (cell.level + 1);
+        newResources[4].amount += 1 * (cell.level + 1);
+        newResources[0].amount += 1 * (cell.level + 1);
+        return newResources;
+      });
+    } else if (type === "wood") {
+      setResources((prev) => {
+        const newResources = prev.slice(0);
+        newResources[0].amount -= 4 * (cell.level + 1);
+        newResources[3].amount += 2 * (cell.level + 1);
+        newResources[4].amount += 1 * (cell.level + 1);
+        newResources[1].amount += 1 * (cell.level + 1);
+        return newResources;
+      });
+    } else if (type === "brick") {
+      setResources((prev) => {
+        const newResources = prev.slice(0);
+        newResources[2].amount -= 4 * (cell.level + 1);
+        newResources[3].amount += 2 * (cell.level + 1);
+        newResources[4].amount += 2 * (cell.level + 1);
+        newResources[1].amount += 1 * (cell.level + 1);
+        return newResources;
+      });
+    }
+  };
+
+  const onAddChangeResources = (type: string, cell: Cell) => {
+    if (type === "house") {
+      if (
+        resources[2].amount - 3 * cell.level < 0 ||
+        resources[0].amount - 2 * cell.level < 0
+      ) {
+        setShowPopup(true);
+      } else {
+        setResources((prev) => {
+          const newResources = prev.slice(0); // Just makes a copy.
+          newResources[4].amount += 5 * cell.level;
+          newResources[2].amount -= 3 * cell.level;
+          newResources[0].amount -= 2 * cell.level;
+          return newResources;
+        });
+      }
     } else if (type === "cow") {
       setResources((prev) => {
         const newResources = prev.slice(0);
@@ -241,12 +297,33 @@ function App() {
     ]);
   };
 
+  const onDowngrade = (index: number, cell: Cell) => {
+    onDowngradeResources(cell.type!, cell);
+
+    setCells((prev) => [
+      ...prev.slice(0, index),
+      cell,
+      ...prev.slice(index + 1),
+    ]);
+  };
+
   return (
     <div className="App">
       <div className="backgroundImage"></div>
       <Header />
       <ResourcesView resources={resources} />
-      <Map cells={cells} resources={resources} onAdd={onAddImprove} />
+      <Map
+        cells={cells}
+        resources={resources}
+        onAdd={onAddImprove}
+        onDowngrade={onDowngrade}
+      />
+      {showPopup && (
+        <div>
+          <p>You're broke</p>{" "}
+          <button onClick={() => setShowPopup(false)}>Close</button>{" "}
+        </div>
+      )}
     </div>
   );
 }

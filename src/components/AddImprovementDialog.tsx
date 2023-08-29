@@ -29,11 +29,11 @@ Props) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (
-      resources[0].amount <= 0 ||
-      resources[1].amount <= 0 ||
-      resources[2].amount <= 0 ||
-      resources[3].amount <= 0 ||
-      resources[4].amount <= 0
+      resources[0].amount < 0 ||
+      resources[1].amount < 0 ||
+      resources[2].amount < 0 ||
+      resources[3].amount < 0 ||
+      resources[4].amount < 0
     ) {
       let anuncio: boolean | undefined = window.confirm(
         "Lo siento...you lost the game :'("

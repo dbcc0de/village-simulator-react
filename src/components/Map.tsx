@@ -7,9 +7,10 @@ interface Props {
   cells: Cell[];
   resources: Resource[];
   onAdd: (index: number, cell: Cell) => void;
+  onDowngrade: (index: number, cell: Cell) => void;
 }
 
-const Map = ({ cells, resources, onAdd }: Props) => {
+const Map = ({ cells, resources, onAdd, onDowngrade }: Props) => {
   return (
     <div className="Map">
       {cells.map((item, index) => (
@@ -19,6 +20,7 @@ const Map = ({ cells, resources, onAdd }: Props) => {
           key={index}
           resources={resources}
           onAdd={onAdd}
+          onDowngrade={onDowngrade}
         />
       ))}
     </div>

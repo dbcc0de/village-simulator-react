@@ -10,9 +10,10 @@ interface Props {
   resources: Resource[];
   index: number;
   onAdd: (index: number, cell: Cell) => void;
+  onDowngrade: (index: number, cell: Cell) => void;
 }
 
-const Tile = ({ cell, resources, index, onAdd }: Props) => {
+const Tile = ({ cell, resources, index, onAdd, onDowngrade }: Props) => {
   // when a tile is clicked render a improvement dialog
   // if empty render add / if !empty render edit
   // cell.isEmpty === true => render onAdd
@@ -47,6 +48,7 @@ const Tile = ({ cell, resources, index, onAdd }: Props) => {
               index={index}
               resources={resources}
               onAdd={onAdd}
+              onDowngrade={onDowngrade}
               setShowDialogs={setShowDialogs}
             />
           ) : (
