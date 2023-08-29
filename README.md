@@ -6,3 +6,6 @@ Desktop version below:
 
 Mobile version below:
 ![villageSimMobile](https://github.com/dbcc0de/portfolio-images/assets/125756539/f2786142-4b89-4dda-93bd-fcaefc09ad32)
+
+Example of editing a resource:
+![villageSimMobileEditResource](https://github.com/dbcc0de/portfolio-images/assets/125756539/0b30ee89-5af7-4386-95a6-171a0a35bf14)
